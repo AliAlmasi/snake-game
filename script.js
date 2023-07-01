@@ -47,6 +47,7 @@ function game() {
   ctx.fillStyle = "red";
   ctx.fillRect(ax * gs, ay * gs, gs - 2, gs - 2);
 }
+
 function keyPush(evt) {
   switch (evt.keyCode) {
     case 65: //a
