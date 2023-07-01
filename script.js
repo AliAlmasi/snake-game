@@ -48,52 +48,31 @@ function game() {
   ctx.fillRect(ax * gs, ay * gs, gs - 2, gs - 2);
 }
 
-function keyPush(evt) {
-  switch (evt.keyCode) {
-    case 65: //a
-      xv = -1;
-      yv = 0;
-      break;
-    case 37: //leftArr
-      xv = -1;
-      yv = 0;
-      break;
-    case 87: //w
-      xv = 0;
-      yv = -1;
-      break;
-    case 38: //upArr
-      xv = 0;
-      yv = -1;
-      break;
-    case 68: //d
-      xv = 1;
-      yv = 0;
-      break;
-    case 39: //rightArr
-      xv = 1;
-      yv = 0;
-      break;
-    case 83: //s
-      xv = 0;
-      yv = 1;
-      break;
-    case 40: //downArr
-      xv = 0;
-      yv = 1;
-      break;
-  }
-}
-
 window.onload = function () {
   canv = document.getElementById("canv");
   ctx = canv.getContext("2d");
-  document.addEventListener("keydown", keyPush);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "w" || e.key === "ArrowUp") {
+      xv = 0;
+      yv = -1;
+    }
+    if (e.key === "d" || e.key === "ArrowRight") {
+      xv = 1;
+      yv = 0;
+    }
+    if (e.key === "s" || e.key === "ArrowDown") {
+      xv = 0;
+      yv = 1;
+    }
+    if (e.key === "a" || e.key === "ArrowLeft") {
+      xv = -1;
+      yv = 0;
+    }
+  });
   setInterval(game, 1000 / 10);
 };
 
 const resetButton = document.querySelector(`.reset`);
 resetButton.addEventListener("click", () => {
   location.reload();
-  return true;
 });
