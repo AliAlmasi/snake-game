@@ -81,9 +81,6 @@ function keyPush(evt) {
       xv = 0;
       yv = 1;
       break;
-    case 27: //esc
-      location.reload();
-      break;
   }
 }
 
