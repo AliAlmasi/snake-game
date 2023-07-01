@@ -1,0 +1,100 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@500;700&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: "Ubuntu";
+  font-weight: 500;
+}
+
+html {
+  background-color: black;
+  font-size: 62.5%;
+}
+
+@property --radial {
+  syntax: "<percentage>";
+  initial-value: 25%;
+  inherits: false;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+      circle,
+      rgb(0, 128, 0) 0%,
+      rgba(0, 0, 0, 1) var(--radial)
+    )
+    center no-repeat;
+  animation: backgroundAnimation 5s infinite alternate ease-in-out;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+}
+
+#canv {
+  border: 1px solid lime;
+}
+
+.text {
+  background-color: lime;
+  color: black;
+  border: 1px solid black;
+  font-size: 1.4rem;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  line-height: 1.5;
+}
+
+span {
+  font-weight: bold;
+  color: red;
+}
+
+.button {
+  text-transform: uppercase;
+  color: lime;
+  background-color: black;
+  border: 1px solid lime;
+  font-size: 1.4rem;
+  padding: 1rem;
+  width: 15rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: red;
+  border: 1px solid red;
+}
+
+.button:active {
+  color: black;
+  background-color: red;
+}
+
+@keyframes backgroundAnimation {
+  0% {
+    --radial: 25%;
+  }
+  100% {
+    --radial: 50%;
+  }
+  50% {
+    --radial: 70%;
+  }
+}

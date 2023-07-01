@@ -1,72 +1,24 @@
-<canvas id="gc" width="400" height="400"></canvas>
-<script>
-window.onload=function() {
-	canv=document.getElementById("gc");
-	ctx=canv.getContext("2d");
-	document.addEventListener("keydown",keyPush);
-	setInterval(game,1000/10);
-}
-px=py=10;
-gs=tc=20;
-ax=ay=15;
-xv=yv=0;
-trail=[];
-tail = 5;
-function game() {
-	px+=xv;
-	py+=yv;
-	if(px<0) {
-		px= tc-1;
-	}
-	if(px>tc-1) {
-		px= 0;
-	}
-	if(py<0) {
-		py= tc-1;
-	}
-	if(py>tc-1) {
-		py= 0;
-	}
-	ctx.fillStyle="black";
-	ctx.fillRect(0,0,canv.width,canv.height);
-
-	ctx.fillStyle="lime";
-	for(var i=0;i<trail.length;i++) {
-		ctx.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
-		if(trail[i].x==px && trail[i].y==py) {
-			tail = 5;
-		}
-	}
-	trail.push({x:px,y:py});
-	while(trail.length>tail) {
-	trail.shift();
-	}
-
-	if(ax==px && ay==py) {
-		tail++;
-		ax=Math.floor(Math.random()*tc);
-		ay=Math.floor(Math.random()*tc);
-	}
-	ctx.fillStyle="red";
-	ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
-}
-function keyPush(evt) { //wasd
-	switch(evt.keyCode) {
-		case 65: //left
-			xv=-1;yv=0;
-			break;
-		case 87: //up
-			xv=0;yv=-1;
-			break;
-		case 68: //right
-			xv=1;yv=0;
-			break;
-		case 83: //down
-			xv=0;yv=1;
-			break;
-	}
-}
-</script>
-<p style="background-color: lime; color: black; font-weight: bold; font-size: 14px; padding: 10px; width: 300px;">
-    Use <span style="color: red;">W A S D</span> keys to control the snake.
-</p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake game with JS</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="shortcut icon"
+      href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDYzMCA2MzAiPgo8cmVjdCB3aWR0aD0iNjMwIiBoZWlnaHQ9IjYzMCIgZmlsbD0iI2Y3ZGYxZSIvPgo8cGF0aCBkPSJtNDIzLjIgNDkyLjE5YzEyLjY5IDIwLjcyIDI5LjIgMzUuOTUgNTguNCAzNS45NSAyNC41MyAwIDQwLjItMTIuMjYgNDAuMi0yOS4yIDAtMjAuMy0xNi4xLTI3LjQ5LTQzLjEtMzkuM2wtMTQuOC02LjM1Yy00Mi43Mi0xOC4yLTcxLjEtNDEtNzEuMS04OS4yIDAtNDQuNCAzMy44My03OC4yIDg2LjctNzguMiAzNy42NCAwIDY0LjcgMTMuMSA4NC4yIDQ3LjRsLTQ2LjEgMjkuNmMtMTAuMTUtMTguMi0yMS4xLTI1LjM3LTM4LjEtMjUuMzctMTcuMzQgMC0yOC4zMyAxMS0yOC4zMyAyNS4zNyAwIDE3Ljc2IDExIDI0Ljk1IDM2LjQgMzUuOTVsMTQuOCA2LjM0YzUwLjMgMjEuNTcgNzguNyA0My41NiA3OC43IDkzIDAgNTMuMy00MS44NyA4Mi41LTk4LjEgODIuNS01NC45OCAwLTkwLjUtMjYuMi0xMDcuODgtNjAuNTR6bS0yMDkuMTMgNS4xM2M5LjMgMTYuNSAxNy43NiAzMC40NSAzOC4xIDMwLjQ1IDE5LjQ1IDAgMzEuNzItNy42MSAzMS43Mi0zNy4ydi0yMDEuM2g1OS4ydjIwMi4xYzAgNjEuMy0zNS45NCA4OS4yLTg4LjQgODkuMi00Ny40IDAtNzQuODUtMjQuNTMtODguODEtNTQuMDc1eiIvPgo8L3N2Zz4="
+    />
+  </head>
+  <body>
+    <script defer src="./script.js"></script>
+    <main>
+      <canvas id="canv" width="400" height="400"></canvas>
+      <p class="text">
+        Use <span>W A S D</span> keys to control the snake<br />
+        Press <span>Esc</span> to restart
+      </p>
+      <p class="button reset">Restart</p>
+    </main>
+  </body>
+</html>
